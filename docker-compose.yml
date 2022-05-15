@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    command: bin/rails server -b 0.0.0.0
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+    links:
+      - database
+    depends_on:
+      - database
+  database:
+    image: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=jianfeng
+      - MYSQL_DATABASE=lobsters
+volumes:
+  logvolume01: {}
