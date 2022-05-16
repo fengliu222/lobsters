@@ -58,7 +58,9 @@
         <% end %>
 
         <%= link_to_different_page 'Search', search_path %>
-
+        <% if !@user && Rails.application.open_signups? %>
+          <a href="/invitations/open">Sign Up</a>
+        <% end %>
 
         <% if @user %>
           <% if @user.inbox_count > 0 %>
